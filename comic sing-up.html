@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmic Sign-up</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Space Mono', monospace;
+            background: #000;
+            overflow: hidden;
+        }
+
+        .cosmic-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .star-field {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        .star {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        .planet {
+            position: absolute;
+            border-radius: 50%;
+            animation: orbit 20s linear infinite;
+        }
+
+        @keyframes orbit {
+            from { transform: rotate(0deg) translateX(150px) rotate(0deg); }
+            to   { transform: rotate(360deg) translateX(150px) rotate(-360deg); }
+        }
+
+        .signup-form {
+            background: rgba(25, 25, 25, 0.8);
+            border-radius: 20px;
+            padding: 40px;
+            width: 300px;
+            z-index: 10;
+            color: #fff;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+
+        h1 {
+            margin: 0 0 20px;
+            text-align: center;
+            color: #FFD700;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-bottom: 2px solid #FFD700;
+            color: #fff;
+            font-family: 'Space Mono', monospace;
+        }
+
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            background: #FFD700;
+            border: none;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-family: 'Space Mono', monospace;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .login-link a {
+            color: #FFD700;
+            text-decoration: none;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="cosmic-container">
+        <div class="star-field" id="starField"></div>
+        <div class="planet" style="width: 60px; height: 60px; background: radial-gradient(circle at 30% 30%, #4B0082, #000);"></div>
+        <div class="planet" style="width: 40px; height: 40px; background: radial-gradient(circle at 30% 30%, #1E90FF, #000); animation-duration: 15s;"></div>
+        <form class="signup-form" id="signup-form">
+            <h1>Cosmic Sign-up</h1>
+            <input type="text" placeholder="Cosmic Name" required>
+            <input type="email" placeholder="Galactic Email" required>
+            <input type="password" placeholder="Secret Stardust" required>
+            <input type="password" placeholder="Confirm Stardust" required>
+            <button type="submit">Launch Journey →</button>
+            <p class="login-link">Already a space traveler? <a href="#">Log in</a></p>
+        </form>
+    </div>
+
+    <script>
+        function createStars() {
+            const starField = document.getElementById('starField');
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.width = ${Math.random() * 3}px;
+                star.style.height = star.style.width;
+                star.style.left = ${Math.random() * 100}%;
+                star.style.top = ${Math.random() * 100}%;
+                star.style.animationDelay = ${Math.random() * 3}s;
+                starField.appendChild(star);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', createStars);
+
+        document.getElementById('signup-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Preparing for launch! Welcome aboard, cosmic traveler!');
+        });
+    </script>
+</body>
+</html>
